@@ -22,21 +22,16 @@ public class ServicioEmpleado implements ServicioBase<Empleado> {
         try{
             List<Empleado> empleados = repositorioEmpleado.findAll();
             return empleados;
-
         }catch(Exception error){
-
             throw new Exception(error.getMessage());
-
         }
     }
 
     @Override
     public Empleado buscarPorId(Integer id) throws Exception {
-
         try{
             Optional<Empleado> empleadoBuscado= repositorioEmpleado.findById(id);
             return empleadoBuscado.get();
-
         }catch(Exception error){
 
             throw new Exception(error.getMessage());
@@ -45,7 +40,12 @@ public class ServicioEmpleado implements ServicioBase<Empleado> {
 
     @Override
     public Empleado registrar(Empleado entidad) throws Exception {
-        return null;
+       try{
+           entidad=repositorioEmpleado.save(entidad);
+           return entidad;
+       }catch(Exception error){
+           throw new Exception(error.getMessage());
+       }
     }
 
     @Override
